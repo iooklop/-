@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: resource-share
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/categories
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: DB_HOST
+        fromDatabase:
+          name: resource-share-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: resource-share-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: resource-share-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: resource-share-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: resource-share-db
+          property: password
+      - key: JWT_SECRET
+        generateValue: true
+      # Cloudinary 云端存储凭证，需在 Render 控制台手动填写
+      - key: CLOUDINARY_URL
+        sync: false
+
+databases:
+  - name: resource-share-db
+    databaseName: resource_share
+    plan: free

@@ -1,0 +1,30 @@
+# ---- Git / 版本控制 ----
+.git
+.gitignore
+.gitattributes
+
+# ---- Node / 前端 ----
+frontend/node_modules
+frontend/dist
+frontend/.vite
+
+# ---- Java / Maven ----
+backend/target
+*.class
+
+# ---- 本地上传文件（不要打进镜像） ----
+backend/uploads
+
+# ---- 本地开发配置（含本地密码/密钥，不打包进镜像） ----
+backend/src/main/resources/application-local.yml
+
+# ---- IDE / 系统 ----
+.idea
+.vscode
+*.iml
+.DS_Store
+Thumbs.db
+
+# ---- 与本项目无关的学习文件夹 ----
+java项目实战
+前端项目

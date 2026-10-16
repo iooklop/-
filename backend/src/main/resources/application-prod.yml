@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        # PostgreSQL 中 user 是保留字，全局加引号避免与关键字冲突
+        globally_quoted_identifiers: true
+  sql:
+    init:
+      mode: always
+      encoding: utf-8
+      platform: postgresql
+
+server:
+  port: ${PORT:9090}
+
+jwt:
+  secret: ${JWT_SECRET:}
+  expire: 86400000
+
+app:
+  upload-dir: /tmp/uploads
+  cloudinary:
+    enabled: true

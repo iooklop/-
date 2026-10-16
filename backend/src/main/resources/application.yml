@@ -1,0 +1,46 @@
+spring:
+  profiles:
+    default: local
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/resource_share?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&createDatabaseIfNotExist=true
+    username: root
+    password: ${DB_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  sql:
+    init:
+      mode: always
+      encoding: utf-8
+      platform: mysql
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+server:
+  port: 9090
+
+jwt:
+  secret: ${JWT_SECRET:}
+  expire: 86400000
+
+app:
+  upload-dir: uploads
+  cloudinary:
+    # 是否启用云端文件存储；false 时走本地磁盘（开发环境）
+    enabled: false
+  wechat:
+    # 是否启用真实微信支付；false 时走本地模拟支付，便于无商户号时联调
+    enabled: false
+    appid: ""
+    mchid: ""
+    serial-no: ""
+    private-key-path: ""
+    api-v3-key: ""
+    notify-url: "http://localhost:9090/api/pay/wechat/notify"
